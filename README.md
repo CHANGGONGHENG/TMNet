@@ -1,4 +1,6 @@
-# TMNet — Time-Series Multi-domain Net for response prediction in oesophageal squamous cell carcinoma
+# TMNet — Time-Series Multi-domain Net for response prediction and prognostic stratification in esophageal squamous cell carcinoma
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22971273.svg)](https://doi.org/10.5281/zenodo.22971273)
 
 Code accompanying the manuscript:
 
@@ -176,4 +178,8 @@ Released under the MIT License — see `LICENSE`.
 
 ## Citation
 
-If you use this code, please cite the manuscript above. See `CITATION.cff`.
+If you use this code, please cite the manuscript above. The archived version of the code is
+available at:
+
+- GitHub: https://github.com/CHANGGONGHENG/TMNet
+- Zenodo (v1.0.1): https://doi.org/10.5281/zenodo.22971273
