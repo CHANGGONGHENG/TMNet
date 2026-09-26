@@ -1,0 +1,12 @@
+{
+  "n_classifiers_fitted": 30,
+  "n_features": 8,
+  "n_cases": 120,
+  "cohorts": {
+    "train": 72,
+    "val": 18,
+    "test1": 18,
+    "test2": 12
+  },
+  "seed": 42
+}

@@ -1,0 +1,92 @@
+# ---------------------------------------------------------------------------
+# TMNet — .gitignore
+# Patient data, model weights and generated outputs must never be committed.
+# Rule order matters: negations must come AFTER the broad exclusion patterns.
+# ---------------------------------------------------------------------------
+
+# ---- Model weights (never distributed) ----
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.hdf5
+*.onnx
+*.pb
+*.tflite
+*.safetensors
+*.bin
+*.model
+*.weights
+*.joblib
+*.pkl
+*.pickle
+*.sav
+checkpoint*.pth
+
+# ---- Everything under data/ is excluded ... ----
+data/*
+!data/example/
+!data/expected_output/
+!data/generate_demo_data.py
+
+# ---- ... including all data-like file types ... ----
+*.dcm
+*.dicom
+DICOM/
+*.nii
+*.nii.gz
+*.nrrd
+*.mha
+*.mhd
+*.csv
+*.xlsx
+*.xls
+*.rds
+*.RData
+*.h5ad
+*.loom
+*.svs
+*.tif
+features/
+outputs/
+results/
+predictions/
+runs/
+
+# ---- ... except the simulated demo dataset and the demo output (small csv files) ----
+!data/example/*.csv
+!data/example/**/*.csv
+!data/expected_output/**/*.csv
+!data/expected_output/**/*.json
+
+# ---- Logs, caches, temporary ----
+.runtime/
+logs/
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+tmp/
+temp/
+*.tmp
+
+# ---- Environments ----
+.venv/
+venv/
+env/
+.conda/
+*.egg-info/
+dist/
+build/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Internal working notes (not for publication) ----
+_INTERNAL*
+脚本对照表.md

@@ -1,0 +1,182 @@
+# Configuration for the conventional radiomics machine-learning models.
+#
+# The 30 models below are exactly the models compared in the manuscript (Figure 1A/1B and
+# Supplementary Fig. S2A/S2B), listed in the same order as the pre-nICT panel.
+#
+# 25 of them have a direct scikit-learn (or gradient-boosting library) equivalent and are
+# implemented here. The remaining 5 have no scikit-learn equivalent: their algorithm names
+# correspond to implementations in the WEKA machine-learning toolkit, which is not part of this
+# release. They are listed with `enabled: false` and `backend: external`, and are skipped
+# automatically.
+
+seed: 42
+label_column: pCR
+cohort_column: cohort
+standardize: true          # z-score standardisation, fitted on the training cohort only
+n_bootstrap: 1000          # bootstrap resamples for the AUC 95% confidence interval
+
+models:
+  # --- implemented here (scikit-learn / boosting libraries) ---
+  - name: MLP
+    enabled: true
+    estimator: MLPClassifier
+    params: {hidden_layer_sizes: [128, 64], alpha: 0.001, max_iter: 3000}
+
+  - name: XGBoost
+    enabled: true
+    estimator: XGBClassifier
+    params: {n_estimators: 300, learning_rate: 0.05, max_depth: 3}
+
+  - name: CatBoost
+    enabled: true
+    estimator: CatBoostClassifier
+    params: {iterations: 300, learning_rate: 0.05, depth: 4, verbose: false}
+
+  - name: SVM
+    enabled: true
+    estimator: SVC
+    params: {kernel: rbf, C: 1.0, gamma: scale, probability: true}
+
+  - name: ExtraTrees
+    enabled: true
+    estimator: ExtraTreesClassifier
+    params: {n_estimators: 300, max_depth: 6}
+
+  - name: RandomForest
+    enabled: true
+    estimator: RandomForestClassifier
+    params: {n_estimators: 300, max_depth: 6}
+
+  - name: RidgeLR
+    enabled: true
+    estimator: RidgeClassifier
+    params: {alpha: 1.0, solver: lsqr}
+
+  - name: GradientBoosting
+    enabled: true
+    estimator: GradientBoostingClassifier
+    params: {n_estimators: 200, learning_rate: 0.05, max_depth: 2}
+
+  - name: ElasticNet
+    enabled: true
+    estimator: LogisticRegression
+    params: {penalty: elasticnet, l1_ratio: 0.5, C: 1.0, solver: saga, max_iter: 5000}
+
+  - name: NuSVM
+    enabled: true
+    estimator: NuSVC
+    params: {nu: 0.5, kernel: rbf, probability: true}
+
+  - name: HistGradientBoosting
+    enabled: true
+    estimator: HistGradientBoostingClassifier
+    params: {max_iter: 200, learning_rate: 0.05}
+
+  - name: LR
+    enabled: true
+    estimator: LogisticRegression
+    params: {penalty: l2, C: 1.0, solver: lbfgs, max_iter: 5000}
+
+  - name: LinearSVM
+    enabled: true
+    estimator: SVC
+    params: {kernel: linear, C: 1.0, probability: true}
+
+  - name: LightGBM
+    enabled: true
+    estimator: LGBMClassifier
+    params: {n_estimators: 300, learning_rate: 0.05, max_depth: 3, verbose: -1}
+
+  - name: Bagging
+    enabled: true
+    estimator: BaggingClassifier
+    params: {n_estimators: 200}
+
+  - name: AdaBoost
+    enabled: true
+    estimator: AdaBoostClassifier
+    params: {n_estimators: 200, learning_rate: 0.05}
+
+  - name: LDA
+    enabled: true
+    estimator: LinearDiscriminantAnalysis
+    params: {solver: lsqr}
+
+  - name: LASSO
+    enabled: true
+    estimator: LogisticRegression
+    params: {penalty: l1, C: 1.0, solver: liblinear, max_iter: 5000}
+
+  - name: KNN
+    enabled: true
+    estimator: KNeighborsClassifier
+    params: {n_neighbors: 5}
+
+  - name: CART
+    enabled: true
+    estimator: DecisionTreeClassifier
+    params: {criterion: gini, max_depth: 5}
+
+  - name: QDA
+    enabled: true
+    estimator: QuadraticDiscriminantAnalysis
+    params: {reg_param: 0.5}
+
+  - name: GaussianNB
+    enabled: true
+    estimator: GaussianNB
+    params: {}
+
+  - name: PolynomialSVM
+    enabled: true
+    estimator: SVC
+    params: {kernel: poly, degree: 3, C: 1.0, probability: true}
+
+  - name: SGDClassifier
+    enabled: true
+    estimator: SGDClassifier
+    params: {loss: log_loss, max_iter: 5000}
+
+  - name: DecisionTree
+    enabled: true
+    estimator: DecisionTreeClassifier
+    params: {criterion: entropy, max_depth: 5}
+
+  # --- no scikit-learn equivalent ---
+  - name: RotationForest
+    enabled: true
+    backend: weka
+    classname: weka.classifiers.meta.RotationForest
+    options: ["-I", "10", "-P", "50"]
+    estimator: null
+    params: {}
+
+  - name: ConditionalInferenceTree
+    enabled: true
+    backend: r
+    r_model: ConditionalInferenceTree
+    estimator: null
+    params: {}
+
+  - name: GentleBoost
+    enabled: true
+    backend: sklearn
+    estimator: GentleBoostClassifier
+    params: {n_estimators: 200, learning_rate: 1.0}
+
+  - name: LogitBoost
+    enabled: true
+    backend: weka
+    classname: weka.classifiers.meta.LogitBoost
+    options: []
+    estimator: null
+    params: {}
+
+  - name: RDA
+    enabled: true
+    backend: sklearn
+    estimator: LinearDiscriminantAnalysis
+    params: {solver: eigen, shrinkage: auto}
+    note: "Regularized discriminant analysis: LDA with automatic Ledoit-Wolf shrinkage (Friedman's RDA)."
+
+

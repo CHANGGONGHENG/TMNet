@@ -1,0 +1,29 @@
+# TMNet — deep-learning environment (Python 3.11)
+# 2.5D deep-learning networks (PyTorch).
+# Exact versions read from the environment that produced the results in the manuscript
+# (Python 3.11.15).
+
+# --- deep learning ---
+torch==2.11.0+cu128
+torchvision==0.26.0
+
+# --- scientific stack ---
+numpy==2.4.6
+pandas==3.0.3
+scipy==1.17.1
+scikit-learn==1.9.0
+scikit-image==0.26.0
+SimpleITK==2.5.5
+nibabel==5.4.2
+pillow==12.2.0
+joblib==1.5.3
+
+# --- configuration / plotting ---
+PyYAML==6.0.3
+matplotlib==3.11.0
+seaborn==0.13.2
+
+# --- notes ---
+# CUDA 12.8 (driver 610.47); NVIDIA GeForce RTX 5090 (32 GB) used for training and inference.
+# Install PyTorch with the matching CUDA build, e.g.:
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128

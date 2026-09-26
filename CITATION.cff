@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the manuscript."
+title: "TMNet: Time-Series Multi-domain Net for response prediction in oesophageal squamous cell carcinoma"
+abstract: >-
+  Code accompanying a multicentre study on longitudinal CT radiomics and deep learning for
+  predicting pathological complete response and stratifying prognosis in oesophageal squamous
+  cell carcinoma after neoadjuvant immunochemotherapy.
+type: software
+authors:
+  - family-names: "Zhang"
+    given-names: "Guisheng"
+  - family-names: "Gong"
+    given-names: "Bingxin"
+  - family-names: "Guo"
+    given-names: "Yusheng"
+  - family-names: "Lou"
+    given-names: "Jie"
+  - family-names: "Peng"
+    given-names: "Ying"
+  - family-names: "Cai"
+    given-names: "Siqian"
+  - family-names: "Fu"
+    given-names: "Zhichao"
+  - family-names: "Xu"
+    given-names: "Yuanji"
+  - family-names: "Yang"
+    given-names: "Lian"
+license: MIT
+# The repository URL, version, release date and archived DOI will be added here
+# once the GitHub repository has been created and archived.
